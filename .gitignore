@@ -10,3 +10,13 @@
 .kotlin
 .trae
 local.properties
+
+# Keystore files
+*.jks
+*.keystore
+*.p12
+*.pfx
+
+# Secrets
+secrets.properties
+keystore.properties

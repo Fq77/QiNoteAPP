@@ -6,6 +6,9 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -27,13 +30,14 @@ data class AppConfig(
 
 @Singleton
 class PreferencesManager @Inject constructor(
-    private val dataStore: DataStore<Preferences>
+    private val dataStore: DataStore<Preferences>,
+    private val secureKeyStore: SecureKeyStore
 ) {
+    private val LEGACY_API_KEY = stringPreferencesKey("api_key")
 
     private object Keys {
         val AI_ENABLED = booleanPreferencesKey("ai_enabled")
         val API_ADDRESS = stringPreferencesKey("api_address")
-        val API_KEY = stringPreferencesKey("api_key")
         val TEXT_MODEL = stringPreferencesKey("text_model")
         val VISION_MODEL = stringPreferencesKey("vision_model")
         val AUTO_RETRY = booleanPreferencesKey("auto_retry")
@@ -43,16 +47,21 @@ class PreferencesManager @Inject constructor(
         val SUPER_ISLAND_ENABLED = booleanPreferencesKey("super_island_enabled")
     }
 
+    private val _secureApiKey = MutableStateFlow(secureKeyStore.getApiKey() ?: "")
+    private val secureApiKeyFlow = _secureApiKey.asStateFlow()
+
     val aiConfig: Flow<AiConfig> = dataStore.data.map { prefs ->
         AiConfig(
             aiEnabled = prefs[Keys.AI_ENABLED] ?: true,
             apiAddress = prefs[Keys.API_ADDRESS] ?: "https://open.bigmodel.cn/api/paas/v4/chat/completions",
-            apiKey = prefs[Keys.API_KEY] ?: "",
+            apiKey = "",
             textModel = prefs[Keys.TEXT_MODEL] ?: "glm-4.6v-flash",
             visionModel = prefs[Keys.VISION_MODEL] ?: "glm-4.6v-flash",
             autoRetry = prefs[Keys.AUTO_RETRY] ?: true,
             saveChatHistory = prefs[Keys.SAVE_CHAT_HISTORY] ?: false
         )
+    }.combine(secureApiKeyFlow) { config, apiKey ->
+        config.copy(apiKey = apiKey)
     }
 
     val superIslandEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
@@ -67,14 +76,26 @@ class PreferencesManager @Inject constructor(
     }
 
     suspend fun updateAiConfig(config: AiConfig) {
+        secureKeyStore.setApiKey(config.apiKey)
+        _secureApiKey.value = config.apiKey
         dataStore.edit { prefs ->
             prefs[Keys.AI_ENABLED] = config.aiEnabled
             prefs[Keys.API_ADDRESS] = config.apiAddress
-            prefs[Keys.API_KEY] = config.apiKey
             prefs[Keys.TEXT_MODEL] = config.textModel
             prefs[Keys.VISION_MODEL] = config.visionModel
             prefs[Keys.AUTO_RETRY] = config.autoRetry
             prefs[Keys.SAVE_CHAT_HISTORY] = config.saveChatHistory
+        }
+    }
+
+    suspend fun migrateLegacyApiKey() {
+        dataStore.edit { prefs ->
+            val legacyKey = prefs[LEGACY_API_KEY]
+            if (legacyKey != null) {
+                secureKeyStore.setApiKey(legacyKey)
+                _secureApiKey.value = legacyKey
+                prefs.remove(LEGACY_API_KEY)
+            }
         }
     }
 

@@ -20,6 +20,7 @@ coil = "2.7.0"
 desugarJdkLibs = "2.1.5"
 hyperNotification = "1.4"
 shizuku = "13.1.5"
+securityCrypto = "1.1.0-alpha06"
 
 
 [libraries]
@@ -55,6 +56,7 @@ desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", ver
 hyper-notification-focus-api = { group = "com.xzakota.hyper.notification", name = "focus-api", version.ref = "hyperNotification" }
 shizuku-api = { group = "dev.rikka.shizuku", name = "api", version.ref = "shizuku" }
 shizuku-provider = { group = "dev.rikka.shizuku", name = "provider", version.ref = "shizuku" }
+androidx-security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "securityCrypto" }
 
 
 [plugins]

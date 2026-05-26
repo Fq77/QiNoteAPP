@@ -6,6 +6,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.qinoteapp.qinoteapp.data.local.PreferencesManager
+import com.qinoteapp.qinoteapp.data.local.SecureKeyStore
 import com.qinoteapp.qinoteapp.data.repository.BillRepository
 import com.qinoteapp.qinoteapp.data.repository.CategoryRepository
 import dagger.Module
@@ -31,8 +32,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePreferencesManager(dataStore: DataStore<Preferences>): PreferencesManager =
-        PreferencesManager(dataStore)
+    fun providePreferencesManager(
+        dataStore: DataStore<Preferences>,
+        secureKeyStore: SecureKeyStore
+    ): PreferencesManager =
+        PreferencesManager(dataStore, secureKeyStore)
 
     @Provides
     @Singleton
