@@ -1,5 +1,6 @@
 <div align="center">
-<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" alt="QiNote Icon" width="120" height="120" style="border-radius: 24px;">
+<img src="app/src/main/res/drawable/rounded_icon.png" alt="QiNote Icon" width="120" height="120" style="border-radius: 24px;">
+
 
 # QiNote
 
@@ -120,19 +121,13 @@ app/src/main/
 
 ### 特殊功能
 - [**Shizuku**](https://github.com/RikkaApps/Shizuku) - 系统 API 调用框架
-- [**Hyper Notification Focus**](https://github.com/xzakota/HyperNotification) - HyperOS 超级岛通知库
+- [**HyperNotification**](https://github.com/xzakota/HyperNotification) - HyperOS 超级岛通知库
 
 ---
 
 ## 👤 作者
 
 **Fq77** - [GitHub Profile](https://github.com/Fq77)
-
----
-
-## 📄 License
-
-> 待添加
 
 ---
 
