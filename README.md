@@ -1,5 +1,6 @@
 <div align="center">
-<img src="app/src/main/res/drawable/rounded_icon.png" alt="QiNote Icon" width="120" height="120" style="border-radius: 24px;">
+<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" alt="QiNote Icon" width="120" height="120" style="border-radius: 24px;">
+
 
 
 # QiNote
