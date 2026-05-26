@@ -1,6 +1,16 @@
+<div align="center">
+<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" alt="QiNote Icon" width="120" height="120" style="border-radius: 24px;">
+
 # QiNote
 
 > AI 驱动的智能记账 Android 应用
+
+![Kotlin](https://img.shields.io/badge/Kotlin-2.0-7F52FF?logo=kotlin&logoColor=white)
+![Android](https://img.shields.io/badge/Android-API%2024%2B-3DDC84?logo=android&logoColor=white)
+![Compose](https://img.shields.io/badge/Jetpack%20Compose-2025.05-4285F4?logo=jetpackcompose&logoColor=white)
+![Gradle](https://img.shields.io/badge/Gradle-8.9.2-02303A?logo=gradle&logoColor=white)
+
+</div>
 
 ---
 
@@ -17,24 +27,21 @@
 
 ## 🛠️ 技术栈
 
-- **语言**: Kotlin
-- **UI**: Jetpack Compose + Material 3
-- **架构**: MVVM + Clean Architecture
-- **依赖注入**: Hilt
-- **数据库**: Room
-- **导航**: Navigation Compose
-- **网络**: OkHttp + Kotlinx Serialization
-- **图片加载**: Coil
-- **其他**: 
-  - DataStore (偏好设置)
-  - Shizuku (系统权限)
-  - Hyper Notification (超级岛)
+| 分类 | 技术 |
+|------|------|
+| 语言 | Kotlin |
+| UI | Jetpack Compose + Material 3 |
+| 架构 | MVVM + Clean Architecture |
+| 依赖注入 | Hilt |
+| 数据库 | Room |
+| 导航 | Navigation Compose |
+| 网络 | OkHttp + Kotlinx Serialization |
+| 图片加载 | Coil |
+| 偏好设置 | DataStore |
+| 系统权限 | Shizuku |
+| 超级岛 | Hyper Notification |
 
----
 
-## 📱 截图
-
-> 📸 待添加
 
 ---
 
@@ -92,6 +99,34 @@ app/src/main/
 │   └── MainActivity.kt
 └── res/                  # 资源文件
 ```
+
+---
+
+## 🙏 鸣谢
+
+本项目的开发离不开以下优秀的开源项目：
+
+### 核心框架
+- [**Jetpack Compose**](https://developer.android.com/jetpack/compose) - 现代 Android UI 工具包
+- [**Kotlin**](https://kotlinlang.org/) - 现代编程语言
+- [**Hilt**](https://dagger.dev/hilt/) - 依赖注入框架
+- [**Room**](https://developer.android.com/jetpack/androidx/releases/room) - SQLite 对象映射库
+
+### 功能库
+- [**OkHttp**](https://square.github.io/okhttp/) - 高效的 HTTP 客户端
+- [**Coil**](https://coil-kt.github.io/coil/) - Kotlin 图片加载库
+- [**Kotlinx Serialization**](https://github.com/Kotlin/kotlinx.serialization) - Kotlin 序列化库
+- [**DataStore**](https://developer.android.com/jetpack/androidx/releases/datastore) - 数据存储解决方案
+
+### 特殊功能
+- [**Shizuku**](https://github.com/RikkaApps/Shizuku) - 系统 API 调用框架
+- [**Hyper Notification Focus**](https://github.com/xzakota/HyperNotification) - HyperOS 超级岛通知库
+
+---
+
+## 👤 作者
+
+**Fq77** - [GitHub Profile](https://github.com/Fq77)
 
 ---
 
