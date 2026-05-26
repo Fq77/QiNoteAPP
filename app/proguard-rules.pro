@@ -7,6 +7,7 @@
 -keepattributes InnerClasses
 -keepattributes EnclosingMethod
 
+-dontwarn com.google.errorprone.annotations.**
 -dontwarn javax.annotation.**
 -dontwarn kotlin.Unit
 -dontwarn retrofit2.**
